@@ -47,12 +47,26 @@ export default function QueryProcessor(query: string): string {
     const numbers = query.match(/\d+/g)?.map(Number);
     if (numbers && numbers.length > 0) {
       const squaresAndCubes = numbers.filter((num) => {
-        const sqrt = Math.sqrt(num);
-        const cbrt = Math.cbrt(num);
-        console.log(`Number: ${num}, Square Root: ${sqrt}, Cube Root: ${cbrt}`);
-        return Number.isInteger(sqrt) && Number.isInteger(cbrt);
+      const sqrt = Math.sqrt(num);
+      const cbrt = Math.cbrt(num);
+      return Number.isInteger(sqrt) && Number.isInteger(cbrt);
       });
-      return squaresAndCubes.toString();
+      return squaresAndCubes.join(", ");
+    }
+  }
+
+  if (query.toLowerCase().includes("primes")) {
+    const numbers = query.match(/\d+/g)?.map(Number);
+    if (numbers && numbers.length > 0) {
+      const isPrime = (num: number) => {
+        if (num <= 1) return false;
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+          if (num % i === 0) return false;
+        }
+        return true;
+      };
+      const primes = numbers.filter(isPrime);
+      return primes.join(", ");
     }
   }
 
