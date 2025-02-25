@@ -55,12 +55,12 @@ export default function QueryProcessor(query: string): string {
     const numbers = query.match(/\d+/g)?.map(Number);
     console.log(numbers);
     if (numbers && numbers.length > 0) {
-      const squaresAndCubes = numbers.filter((num) => {
+      numbers.filter((num) => {
       const sqrt = Math.sqrt(num);
       const cbrt = Math.cbrt(num);
       return Number.isInteger(sqrt) && Number.isInteger(cbrt);
       });
-      return numbers.join(" ");
+      return numbers.join(", ");
     }
   }
 
@@ -74,8 +74,8 @@ export default function QueryProcessor(query: string): string {
         }
         return true;
       };
-      const primes = numbers.filter(isPrime);
-      return numbers.join(" ");
+      numbers.filter(isPrime);
+      return numbers.join(", ");
     }
   }
 
