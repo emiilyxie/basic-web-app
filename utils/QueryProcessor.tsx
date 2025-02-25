@@ -39,15 +39,12 @@ export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("square") && query.toLowerCase().includes("cube")) {
     const numbers = query.match(/\d+/g)?.map(Number);
     if (numbers && numbers.length > 0) {
-      const squaresAndCubes = [];
-      for (let i = 1; i <= 50; i++) {
-        const square = i * i;
-        const cube = i * i * i;
-        if (numbers.includes(square) && numbers.includes(cube)) {
-          squaresAndCubes.push(i);
-        }
-      }
-      return squaresAndCubes.join(",");
+      const squaresAndCubes = numbers.filter((num) => {
+        const sqrt = Math.sqrt(num);
+        const cbrt = Math.cbrt(num);
+        return Number.isInteger(sqrt) && Number.isInteger(cbrt);
+      });
+      return squaresAndCubes.toString();
     }
   }
 
