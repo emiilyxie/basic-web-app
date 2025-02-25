@@ -36,12 +36,20 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("minus")) {
+    const numbers = query.match(/\d+/g)?.map(Number);
+    if (numbers && numbers.length == 2) {
+      return (numbers[0] - numbers[1]).toString();
+    }
+  }
+
   if (query.toLowerCase().includes("square") && query.toLowerCase().includes("cube")) {
     const numbers = query.match(/\d+/g)?.map(Number);
     if (numbers && numbers.length > 0) {
       const squaresAndCubes = numbers.filter((num) => {
         const sqrt = Math.sqrt(num);
         const cbrt = Math.cbrt(num);
+        console.log(`Number: ${num}, Square Root: ${sqrt}, Cube Root: ${cbrt}`);
         return Number.isInteger(sqrt) && Number.isInteger(cbrt);
       });
       return squaresAndCubes.toString();
