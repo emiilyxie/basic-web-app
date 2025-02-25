@@ -29,6 +29,7 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+
   if (query.toLowerCase().includes("multiplied")) {
     const numbers = query.match(/\d+/g)?.map(Number);
     if (numbers && numbers.length == 2) {
@@ -59,7 +60,7 @@ export default function QueryProcessor(query: string): string {
       const cbrt = Math.cbrt(num);
       return Number.isInteger(sqrt) && Number.isInteger(cbrt);
       });
-      return squaresAndCubes.join(", ");
+      return numbers.join(" ");
     }
   }
 
@@ -74,7 +75,7 @@ export default function QueryProcessor(query: string): string {
         return true;
       };
       const primes = numbers.filter(isPrime);
-      return primes.join(", ");
+      return numbers.join(" ");
     }
   }
 
