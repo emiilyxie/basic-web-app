@@ -43,8 +43,16 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("power")) {
+    const numbers = query.match(/\d+/g)?.map(Number);
+    if (numbers && numbers.length == 2) {
+      return Math.pow(numbers[0], numbers[1]).toString();
+    }
+  }
+
   if (query.toLowerCase().includes("square") && query.toLowerCase().includes("cube")) {
     const numbers = query.match(/\d+/g)?.map(Number);
+    console.log(numbers);
     if (numbers && numbers.length > 0) {
       const squaresAndCubes = numbers.filter((num) => {
       const sqrt = Math.sqrt(num);

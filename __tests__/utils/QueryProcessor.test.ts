@@ -42,4 +42,13 @@ describe("QueryProcessor", () => {
             "elx"
           ));
     })
+
+    test('should return andrew ID', () => {
+        const query = "Which of the following numbers are primes: 2, 23, 21, 47, 38?";
+        const response: string = QueryProcessor(query);
+        console.log(response);
+        expect(response).toBe((
+            "elx"
+          ));
+    })
 });
