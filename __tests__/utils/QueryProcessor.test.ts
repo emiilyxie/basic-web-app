@@ -34,7 +34,7 @@ describe("QueryProcessor", () => {
           ));
     })
 
-    test('should return andrew ID', () => {
+    test('should sqare cube', () => {
         const query = "Which of the following numbers is both a square and a cube: 3969, 4523, 2380, 729, 2677, 2660?";
         const response: string = QueryProcessor(query);
         console.log(response);
